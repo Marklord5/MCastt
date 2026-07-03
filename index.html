@@ -155,11 +155,18 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#contacto">Contacto</a>
 </div>
 <div class="flex items-center gap-md">
-<button class="bg-primary-container text-white px-md py-xs rounded font-label-md text-label-md active:scale-95 transition-transform">Currículum</button>
+<a href="assets/CV_Marco_Castaneda.pdf" download="CV_Marco_Castaneda.pdf" class="bg-primary-container text-white px-md py-xs rounded font-label-md text-label-md active:scale-95 transition-transform">Currículum</a>
 <button class="md:hidden text-on-surface" id="menu-toggle">
 <span class="material-symbols-outlined">menu</span>
 </button>
 </div>
+</div>
+<div class="hidden md:hidden flex-col gap-base px-lg py-base border-t border-outline-variant/20 bg-surface" id="mobile-menu">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#inicio">Inicio</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#experiencia">Experiencia</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#habilidades">Habilidades</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#proyectos">Proyectos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#contacto">Contacto</a>
 </div>
 </nav>
 <main class="pt-16">
@@ -510,9 +517,9 @@
 </div>
 </div>
 <!-- Proyecto 5: Registro de Asistencia KMP -->
-<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Asistencia KMP" data-status="Producción" data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuAIwkuS0LbeNVGJcOtX7j-3kAmVoAnlj2137srLQIKwaBEHfXx2FaxXdUKwm71Rz6xXnhs93j2Tic6o2e92XBePEbkrdeXJTnvYfEA4JwhvUM4EKpAD_W8f0ENj9IrUzrYPHqmL4Eldl-s-_LbH8qmPXtQAuaiFWhK1rwe9243VNecCIyXcJfqqsUAA1iupa2G23culw2fGbL0-Uy-AxqB_QTu9OKhMQn2wG5l0aRJBb41TDCzcrgNmmA" data-tags="Kotlin Multiplatform,Firebase,Geofencing" data-desc="Aplicación móvil multiplataforma (iOS y Android) construida con Kotlin Multiplatform para el registro de asistencia del personal. Implementa geovallado (geofencing) y validación biométrica para garantizar la veracidad de los registros, sincronizados en tiempo real con Firebase.">
-<div class="h-40 relative">
-<img alt="KMP Attendance App" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIwkuS0LbeNVGJcOtX7j-3kAmVoAnlj2137srLQIKwaBEHfXx2FaxXdUKwm71Rz6xXnhs93j2Tic6o2e92XBePEbkrdeXJTnvYfEA4JwhvUM4EKpAD_W8f0ENj9IrUzrYPHqmL4Eldl-s-_LbH8qmPXtQAuaiFWhK1rwe9243VNecCIyXcJfqqsUAA1iupa2G23culw2fGbL0-Uy-AxqB_QTu9OKhMQn2wG5l0aRJBb41TDCzcrgNmmA"/>
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Asistencia KMP" data-status="Producción" data-image="assets/IMG_6313.MP4" data-tags="Kotlin Multiplatform,Firebase,Geofencing" data-desc="Aplicación móvil multiplataforma (iOS y Android) construida con Kotlin Multiplatform para el registro de asistencia del personal. Implementa geovallado (geofencing) y validación biométrica para garantizar la veracidad de los registros, sincronizados en tiempo real con Firebase.">
+<div class="h-80 relative flex items-center justify-center bg-black overflow-hidden">
+<video autoplay class="w-full h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity" loop muted playsinline src="assets/IMG_6313.MP4"></video>
 <div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
 </div>
 <div class="p-md flex-grow flex flex-col space-y-sm">
@@ -530,12 +537,13 @@
 </section>
 <!-- Project Detail Modal -->
 <div class="fixed inset-0 z-50 hidden items-center justify-center p-md bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" id="project-modal">
-<div class="glass-card rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative border border-outline-variant opacity-0 scale-95 translate-y-4 transition-all duration-300 ease-out" id="project-modal-panel">
+<div class="glass-card rounded-2xl w-full max-w-2xl min-h-[70vh] max-h-[95vh] overflow-y-auto relative border border-outline-variant opacity-0 scale-155 translate-y-4 transition-all duration-300 ease-out" id="project-modal-panel">
 <button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-surface/80 hover:bg-surface text-white hover:text-primary transition-colors" id="modal-close">
 <span class="material-symbols-outlined">close</span>
 </button>
-<div class="h-56 md:h-64 relative bg-surface-container">
+<div class="h-156 md:h-[55rem] relative bg-surface-container">
 <img alt="" class="w-full h-full object-cover hidden" id="modal-image"/>
+<video autoplay class="w-full h-full object-cover bg-black hidden" id="modal-video" loop muted playsinline></video>
 <div class="w-full h-full flex items-center justify-center opacity-40" id="modal-icon-wrap">
 <span class="material-symbols-outlined text-8xl" id="modal-icon"></span>
 </div>
@@ -606,10 +614,18 @@
 </div>
 </footer>
 <script>
-        // Simple menu toggle logic
+        // Mobile menu toggle logic
         const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
         menuToggle?.addEventListener('click', () => {
-            console.log('Menu toggle clicked');
+            mobileMenu?.classList.toggle('hidden');
+            mobileMenu?.classList.toggle('flex');
+        });
+        mobileMenu?.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
         });
 
         // Dynamic active state for navigation links based on scroll
@@ -675,6 +691,7 @@
         const modalPanel = document.getElementById('project-modal-panel');
         const modalClose = document.getElementById('modal-close');
         const modalImage = document.getElementById('modal-image');
+        const modalVideo = document.getElementById('modal-video');
         const modalIconWrap = document.getElementById('modal-icon-wrap');
         const modalIcon = document.getElementById('modal-icon');
         const modalStatus = document.getElementById('modal-status');
@@ -690,13 +707,23 @@
             modalStatus.textContent = status || '';
             modalStatus.classList.toggle('hidden', !status);
 
-            if (image) {
+            const isVideo = /\.mp4$/i.test(image || '');
+
+            modalImage.classList.add('hidden');
+            modalVideo.classList.add('hidden');
+            modalVideo.pause();
+            modalVideo.removeAttribute('src');
+
+            if (isVideo) {
+                modalVideo.src = image;
+                modalVideo.classList.remove('hidden');
+                modalIconWrap.classList.add('hidden');
+            } else if (image) {
                 modalImage.src = image;
                 modalImage.alt = title || '';
                 modalImage.classList.remove('hidden');
                 modalIconWrap.classList.add('hidden');
             } else {
-                modalImage.classList.add('hidden');
                 modalIconWrap.classList.remove('hidden');
                 modalIcon.textContent = icon || 'work';
             }

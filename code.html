@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "on-secondary": "#313032",
+                            "on-secondary-container": "#b7b4b7",
+                            "surface-container-low": "#1a1b23",
+                            "on-secondary-fixed-variant": "#474649",
+                            "inverse-surface": "#e2e1ed",
+                            "surface-bright": "#373942",
+                            "inverse-on-surface": "#2f3039",
+                            "tertiary": "#c8c5cb",
+                            "tertiary-container": "#757479",
+                            "secondary-fixed-dim": "#c8c6c8",
+                            "tertiary-fixed": "#e4e1e7",
+                            "surface-variant": "#33343d",
+                            "on-tertiary-fixed-variant": "#47464b",
+                            "on-tertiary": "#303034",
+                            "surface-tint": "#d5baff",
+                            "tertiary-fixed-dim": "#c8c5cb",
+                            "on-tertiary-container": "#fffcff",
+                            "surface-container-lowest": "#0c0e15",
+                            "background": "#11131b",
+                            "on-primary-fixed-variant": "#5e00c1",
+                            "on-secondary-fixed": "#1b1b1d",
+                            "error": "#ffb4ab",
+                            "on-primary-fixed": "#270057",
+                            "on-primary-container": "#fffcff",
+                            "on-tertiary-fixed": "#1b1b1f",
+                            "secondary": "#c8c6c8",
+                            "on-error-container": "#ffdad6",
+                            "primary-fixed-dim": "#d5baff",
+                            "secondary-fixed": "#e5e1e4",
+                            "surface-container-highest": "#33343d",
+                            "primary-container": "#9146ff",
+                            "on-surface-variant": "#cdc2d8",
+                            "secondary-container": "#474649",
+                            "primary": "#d5baff",
+                            "surface-dim": "#11131b",
+                            "on-background": "#e2e1ed",
+                            "inverse-primary": "#7a26e7",
+                            "on-primary": "#42008a",
+                            "on-error": "#690005",
+                            "primary-fixed": "#ecdcff",
+                            "outline-variant": "#4b4455",
+                            "error-container": "#93000a",
+                            "surface-container-high": "#282932",
+                            "surface-container": "#1e1f27",
+                            "surface": "#11131b",
+                            "outline": "#968da1",
+                            "on-surface": "#e2e1ed"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "xl": "80px",
+                            "md": "24px",
+                            "base": "8px",
+                            "xs": "4px",
+                            "lg": "48px",
+                            "container-max": "1280px",
+                            "gutter": "20px",
+                            "sm": "12px"
+                        },
+                        "fontFamily": {
+                            "body-lg": ["Geist"],
+                            "label-md": ["Geist"],
+                            "headline-lg": ["Geist"],
+                            "headline-md": ["Geist"],
+                            "code-sm": ["Geist"],
+                            "headline-xl": ["Geist"],
+                            "headline-lg-mobile": ["Geist"],
+                            "body-md": ["Geist"]
+                        },
+                        "fontSize": {
+                            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                            "code-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                            "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                            "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                        }
+                    }
+                }
+            }
+        } catch (_e) {}
+    </script>
+<style>
+        .hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(145, 70, 255, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glass-card {
+            background: rgba(30, 31, 39, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(150, 141, 161, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(145, 70, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .carousel-track {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel-item {
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+<body class="selection:bg-primary-container selection:text-white bg-surface text-on-surface font-body-md">
+<!-- TopNavBar Navigation Shell -->
+<nav class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/20">
+<div class="flex justify-between items-center px-lg py-base w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-base">
+<span class="font-headline-md text-headline-md font-extrabold text-primary tracking-tighter">NET Dev</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#inicio">Inicio</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#experiencia">Experiencia</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#habilidades">Habilidades</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#proyectos">Proyectos</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-body-md text-body-md" href="#contacto">Contacto</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary-container text-white px-md py-xs rounded font-label-md text-label-md active:scale-95 transition-transform">Currículum</button>
+<button class="md:hidden text-on-surface" id="menu-toggle">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex flex-col justify-center items-center px-md overflow-hidden text-center" id="inicio">
+<div class="hero-glow -top-20 -left-20"></div>
+<div class="hero-glow -bottom-20 -right-20"></div>
+<div class="max-w-4xl mx-auto space-y-md relative z-10">
+<div class="inline-block border border-primary/30 rounded-full px-md py-1 bg-surface-container-low mb-base">
+<span class="text-primary font-label-md text-label-md">Marco Antonio Castañeda Bautista</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-white tracking-tight leading-tight md:text-6xl">
+                    Desarrollador <span class="text-primary">.NET Full Stack</span>
+</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl mx-auto">
+                    Especialista en la construcción de ecosistemas digitales robustos y escalables. Transformando lógica compleja en experiencias de usuario excepcionales con el respaldo de tecnologías Microsoft.
+                </p>
+<div class="flex flex-wrap justify-center gap-md pt-base">
+<a class="bg-primary-container text-white px-lg py-md rounded font-label-md text-label-md hover:brightness-110 transition-all flex items-center gap-xs" href="#proyectos">
+                        Ver Proyectos <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+<a class="border border-outline text-white px-lg py-md rounded font-label-md text-label-md hover:bg-surface-variant transition-all" href="#contacto">
+                        Hablemos
+                    </a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</section>
+<!-- Trayectoria Profesional (Experience) -->
+<section class="py-xl px-md bg-surface-container-lowest" id="experiencia">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-lg gap-base">
+<div class="space-y-xs">
+<h2 class="font-headline-lg text-headline-lg text-white">Trayectoria Profesional</h2>
+<div class="h-1 w-20 bg-primary"></div>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-md">Evolución técnica y liderazgo en proyectos de alto impacto financiero y operativo.</p>
+</div>
+<div class="relative space-y-md before:absolute before:left-4 md:before:left-1/2 before:top-0 before:h-full before:w-0.5 before:bg-outline-variant">
+<!-- GP Soluciones -->
+<div class="relative flex flex-col md:flex-row gap-lg items-center">
+<div class="md:w-1/2 md:text-right order-2 md:order-1">
+<div class="glass-card p-md rounded-lg">
+<span class="text-primary font-label-md text-label-md">2023 - Actualidad</span>
+<h3 class="font-headline-md text-headline-md text-white">GP Soluciones</h3>
+<div class="text-on-surface-variant font-body-md text-body-md mt-base space-y-2">
+<p>Liderazgo en el desarrollo de microservicios y APIs críticas para clientes corporativos.</p>
+<ul class="text-sm list-disc md:list-none space-y-1 opacity-90 pl-4 md:pl-0">
+<li>Desarrollo de Sistemas de Aclaraciones y Pronósticos (Forecast).</li>
+<li>Implementación de Sistemas de Conciliación bancaria.</li>
+<li>Mantenimiento y evolución de Monitor ATM y gestión de comunicaciones con cajeros.</li>
+<li>Optimización y automatización de procesos complejos en SQL Server.</li>
+<li>Creación de herramientas web para reportes e indicadores de cajeros automáticos.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-primary rounded-full z-10 flex items-center justify-center border-4 border-surface shadow-[0_0_15px_rgba(145,70,255,0.5)]"></div>
+<div class="md:w-1/2 order-3"></div>
+</div>
+<!-- TSDN -->
+<div class="relative flex flex-col md:flex-row gap-lg items-center">
+<div class="md:w-1/2 order-2 md:order-1"></div>
+<div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-surface-variant rounded-full z-10 flex items-center justify-center border-4 border-surface"></div>
+<div class="md:w-1/2 order-3">
+<div class="glass-card p-md rounded-lg">
+<span class="text-primary font-label-md text-label-md">2021 - 2023</span>
+<h3 class="font-headline-md text-headline-md text-white">TSDN</h3>
+<div class="text-on-surface-variant font-body-md text-body-md mt-base space-y-2">
+<p>Arquitecto de soluciones Full Stack y Líder del equipo Frontend.</p>
+<ul class="text-sm list-disc space-y-1 opacity-90 pl-4">
+<li>Desarrollo de soluciones web dinámicas utilizando HTML, CSS, JS y jQuery.</li>
+<li>Implementación de seguridad avanzada con encriptación AES-256 para protección de datos.</li>
+<li>Generación de documentación técnica detallada para arquitecturas de sistema.</li>
+<li>Migración progresiva de infraestructuras .NET Legacy a tecnologías modernas.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Financiera Siempre Creciendo -->
+<div class="relative flex flex-col md:flex-row gap-lg items-center">
+<div class="md:w-1/2 md:text-right order-2 md:order-1">
+<div class="glass-card p-md rounded-lg">
+<span class="text-primary font-label-md text-label-md">2019 - 2021</span>
+<h3 class="font-headline-md text-headline-md text-white">Financiera Siempre Creciendo</h3>
+<div class="text-on-surface-variant font-body-md text-body-md mt-base space-y-2">
+<p>Desarrollo de herramientas financieras internas y gestión robusta de datos.</p>
+<ul class="text-sm list-disc md:list-none space-y-1 opacity-90 pl-4 md:pl-0">
+<li>Dominio de T-SQL: creación de Stored Procedures, Triggers, Jobs y Cursores.</li>
+<li>Construcción de APIs robustas con ASP.NET Web API y .NET Core.</li>
+<li>Gestión de despliegues en servidores IIS y administración de versiones con GitHub.</li>
+<li>Optimización de bases de datos para reportes regulatorios en tiempo real.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 bg-surface-variant rounded-full z-10 flex items-center justify-center border-4 border-surface"></div>
+<div class="md:w-1/2 order-3"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Ecosistema Técnico (Skills) -->
+<section class="py-xl px-md" id="habilidades">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-white mb-xs">Ecosistema Técnico</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">Dominio de herramientas para el ciclo de vida completo del desarrollo.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-md">
+<!-- Lenguajes -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Lenguajes</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">C#</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">VB.NET</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">JavaScript</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">TypeScript</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Transact SQL</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Kotlin</span>
+</div>
+</div>
+</div>
+<!-- Backend -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">settings_input_component</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Backend</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">.NET Core / .NET 8</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">ASP.NET MVC</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Web API</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Entity Framework</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Dapper</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">LINQ</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Razor</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Windows Forms</span>
+</div>
+</div>
+</div>
+<!-- Frontend -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">web</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Frontend</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Angular</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Blazor</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">HTML</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">CSS</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Bootstrap</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">jQuery</span>
+</div>
+</div>
+</div>
+<!-- Bases de datos -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">database</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Bases de datos</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">SQL Server (T-SQL)</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">PostgreSQL</span>
+</div>
+</div>
+</div>
+<!-- Móvil -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Móvil</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Kotlin Multiplatform (iOS y Android)</span>
+</div>
+</div>
+</div>
+<!-- DevOps y herramientas -->
+<div class="glass-card p-md rounded-xl space-y-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">DevOps y herramientas</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Docker</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">IIS</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">GitHub</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">SonarQube</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Postman</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">JSON</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Visual Studio</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Claude (Anthropic)</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">GitHub Copilot</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">ChatGPT (OpenAI)</span>
+</div>
+</div>
+</div>
+<!-- Aptitudes (Soft Skills) -->
+<div class="glass-card p-md rounded-xl space-y-md sm:col-span-2 lg:col-span-3">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white mb-sm">Aptitudes</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Trabajo en equipo</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Resolutivo bajo presión</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Adaptable a entornos dinámicos</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Abierto a la crítica constructiva</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Productividad</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Atención al detalle</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Resolución de problemas</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Enfoque en mejora continua</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Responsabilidad y compromiso</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Comunicación efectiva</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Amable</span>
+<span class="bg-surface-container-highest text-white px-2 py-1 rounded text-xs">Apoyo al equipo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Educación e Idiomas -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md mt-md">
+<div class="glass-card p-md rounded-xl flex items-start gap-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white">Educación</h3>
+<p class="text-white font-bold mt-xs">Universidad Tres Culturas</p>
+<p class="text-on-surface-variant text-sm">Ingeniería en Sistemas Computacionales</p>
+<p class="text-primary font-label-md text-xs mt-1">Sep 2018 - Sep 2021</p>
+</div>
+</div>
+<div class="glass-card p-md rounded-xl flex items-start gap-md">
+<div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined">language</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-white">Idiomas</h3>
+<div class="mt-xs">
+<p class="text-white">Inglés Técnico</p>
+<div class="flex items-center gap-2">
+<div class="h-2 w-32 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[75%]"></div>
+</div>
+<span class="text-on-surface-variant text-xs">Dominio Técnico</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Proyectos Section -->
+<section class="py-xl px-md bg-surface-container-lowest overflow-hidden" id="proyectos">
+<div class="max-w-container-max mx-auto">
+<div class="flex items-center gap-md mb-lg">
+<h2 class="font-headline-lg text-headline-lg text-white">Proyectos Destacados</h2>
+<div class="flex-grow h-[1px] bg-outline-variant"></div>
+<div class="flex gap-2">
+<button class="p-2 glass-card rounded-full hover:text-primary" id="prev-btn"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 glass-card rounded-full hover:text-primary" id="next-btn"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="relative">
+<div class="carousel-track flex gap-md" id="carousel-track">
+<!-- Proyecto 1: ATM Monitoreo -->
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Monitor ATM" data-status="Producción" data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuBA8klE8OO18-HSbAzWi4JbC1RQqG8uBCF0lKpKF-f-B2bzVB5r11Vzqy91MCAmRBGDBgOHcYVZpIbXW-9nph5LrPyU-a55Yh3j_LF1Ean2dVLFpYiuYYyzCGjyMIcMWVuhAIiaXNiEgK0qoaQgiQEc_EsLnKjTRaQ3qkolwpvEhvjzBY4y5BaJCCvUb3rdqTpgdD2FRh1vcUZ0VFL8_SaWTqSFNsSwIfS_cHeU6bp8OIaRNOupjrmzEQ" data-tags=".NET Core,SignalR,Monitoreo en tiempo real" data-desc="Plataforma empresarial desarrollada en .NET Core para el monitoreo en tiempo real del estado operativo de una red de cajeros automáticos. Utiliza SignalR para transmitir alertas instantáneas ante fallos, permitiendo a los equipos de soporte reaccionar antes de que el problema impacte al usuario final. Incluye dashboards de disponibilidad, historial de incidencias y métricas de tiempo de respuesta.">
+<div class="h-40 relative">
+<img alt="ATM Monitoring System" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA8klE8OO18-HSbAzWi4JbC1RQqG8uBCF0lKpKF-f-B2bzVB5r11Vzqy91MCAmRBGDBgOHcYVZpIbXW-9nph5LrPyU-a55Yh3j_LF1Ean2dVLFpYiuYYyzCGjyMIcMWVuhAIiaXNiEgK0qoaQgiQEc_EsLnKjTRaQ3qkolwpvEhvjzBY4y5BaJCCvUb3rdqTpgdD2FRh1vcUZ0VFL8_SaWTqSFNsSwIfS_cHeU6bp8OIaRNOupjrmzEQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute top-2 right-2 bg-primary/20 text-primary border border-primary/40 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Producción</div>
+</div>
+<div class="p-md flex-grow flex flex-col space-y-sm">
+<h3 class="font-headline-md text-body-lg font-bold text-white leading-tight">Monitor ATM</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Plataforma empresarial para el seguimiento en tiempo real de cajeros automáticos con .NET.</p>
+<div class="flex flex-wrap gap-1 mt-auto">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">.NET Core</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">SignalR</span>
+</div>
+</div>
+</div>
+<!-- Proyecto 2: Sistema de Aclaraciones -->
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Sistema de Aclaraciones" data-status="Producción" data-icon="list_alt" data-tags="Web API,SQL Server,Auditoría" data-desc="Sistema web para la gestión integral de aclaraciones y reportes de clientes corporativos, integrando flujos de aprobación, trazabilidad de casos y generación de reportes regulatorios. Construido con ASP.NET Web API y SQL Server, con enfoque en la trazabilidad y auditoría de cada movimiento.">
+<div class="h-40 relative bg-surface-container">
+<div class="w-full h-full flex items-center justify-center opacity-30 group-hover:opacity-60 transition-opacity">
+<span class="material-symbols-outlined text-6xl">list_alt</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex-grow flex flex-col space-y-sm">
+<h3 class="font-headline-md text-body-lg font-bold text-white leading-tight">Sistema de Aclaraciones</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Gestión integral de reportes y aclaraciones bancarias para clientes corporativos.</p>
+<div class="flex flex-wrap gap-1 mt-auto">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">Web API</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">SQL Server</span>
+</div>
+</div>
+</div>
+<!-- Proyecto 3: Sistema de Pronósticos -->
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Sistema de Pronósticos" data-status="Producción" data-icon="query_stats" data-tags="C#,T-SQL,Forecasting" data-desc="Motor de pronósticos financieros y operativos basado en algoritmos estadísticos sobre datos históricos, desarrollado en C# con procesamiento intensivo en Transact-SQL. Apoya la toma de decisiones al proyectar demanda y comportamiento de indicadores clave en distintos horizontes temporales.">
+<div class="h-40 relative bg-surface-container">
+<div class="w-full h-full flex items-center justify-center opacity-30 group-hover:opacity-60 transition-opacity">
+<span class="material-symbols-outlined text-6xl">query_stats</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex-grow flex flex-col space-y-sm">
+<h3 class="font-headline-md text-body-lg font-bold text-white leading-tight">Sistema de Pronósticos</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Algoritmos de forecast para la predicción de demanda operativa y financiera.</p>
+<div class="flex flex-wrap gap-1 mt-auto">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">C#</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">T-SQL</span>
+</div>
+</div>
+</div>
+<!-- Proyecto 4: Sistema de Conciliación -->
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Sistema de Conciliación" data-status="Producción" data-icon="account_balance_wallet" data-tags="ASP.NET MVC,Jobs,Conciliación bancaria" data-desc="Automatiza el cruce y conciliación de grandes volúmenes de datos bancarios provenientes de múltiples fuentes, reduciendo el tiempo de cierre de operaciones y minimizando el error humano. Incluye jobs programados, generación de reportes regulatorios y alertas ante discrepancias.">
+<div class="h-40 relative bg-surface-container">
+<div class="w-full h-full flex items-center justify-center opacity-30 group-hover:opacity-60 transition-opacity">
+<span class="material-symbols-outlined text-6xl">account_balance_wallet</span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex-grow flex flex-col space-y-sm">
+<h3 class="font-headline-md text-body-lg font-bold text-white leading-tight">Sistema de Conciliación</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">Automatización de cruce de datos bancarios y reportes regulatorios complejos.</p>
+<div class="flex flex-wrap gap-1 mt-auto">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">ASP.NET MVC</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">Jobs</span>
+</div>
+</div>
+</div>
+<!-- Proyecto 5: Registro de Asistencia KMP -->
+<div class="carousel-item min-w-[300px] md:min-w-[400px] glass-card rounded-xl overflow-hidden group shrink-0 flex flex-col cursor-pointer" data-title="Asistencia KMP" data-status="Producción" data-image="https://lh3.googleusercontent.com/aida-public/AB6AXuAIwkuS0LbeNVGJcOtX7j-3kAmVoAnlj2137srLQIKwaBEHfXx2FaxXdUKwm71Rz6xXnhs93j2Tic6o2e92XBePEbkrdeXJTnvYfEA4JwhvUM4EKpAD_W8f0ENj9IrUzrYPHqmL4Eldl-s-_LbH8qmPXtQAuaiFWhK1rwe9243VNecCIyXcJfqqsUAA1iupa2G23culw2fGbL0-Uy-AxqB_QTu9OKhMQn2wG5l0aRJBb41TDCzcrgNmmA" data-tags="Kotlin Multiplatform,Firebase,Geofencing" data-desc="Aplicación móvil multiplataforma (iOS y Android) construida con Kotlin Multiplatform para el registro de asistencia del personal. Implementa geovallado (geofencing) y validación biométrica para garantizar la veracidad de los registros, sincronizados en tiempo real con Firebase.">
+<div class="h-40 relative">
+<img alt="KMP Attendance App" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIwkuS0LbeNVGJcOtX7j-3kAmVoAnlj2137srLQIKwaBEHfXx2FaxXdUKwm71Rz6xXnhs93j2Tic6o2e92XBePEbkrdeXJTnvYfEA4JwhvUM4EKpAD_W8f0ENj9IrUzrYPHqmL4Eldl-s-_LbH8qmPXtQAuaiFWhK1rwe9243VNecCIyXcJfqqsUAA1iupa2G23culw2fGbL0-Uy-AxqB_QTu9OKhMQn2wG5l0aRJBb41TDCzcrgNmmA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+</div>
+<div class="p-md flex-grow flex flex-col space-y-sm">
+<h3 class="font-headline-md text-body-lg font-bold text-white leading-tight">Asistencia KMP</h3>
+<p class="text-on-surface-variant text-sm line-clamp-2">App multiplataforma (iOS/Android) con geovallado y biometría.</p>
+<div class="flex flex-wrap gap-1 mt-auto">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">Kotlin Multiplatform</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px]">Firebase</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Project Detail Modal -->
+<div class="fixed inset-0 z-50 hidden items-center justify-center p-md bg-black/70 backdrop-blur-sm opacity-0 transition-opacity duration-300" id="project-modal">
+<div class="glass-card rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative border border-outline-variant opacity-0 scale-95 translate-y-4 transition-all duration-300 ease-out" id="project-modal-panel">
+<button class="absolute top-3 right-3 z-10 p-2 rounded-full bg-surface/80 hover:bg-surface text-white hover:text-primary transition-colors" id="modal-close">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="h-56 md:h-64 relative bg-surface-container">
+<img alt="" class="w-full h-full object-cover hidden" id="modal-image"/>
+<div class="w-full h-full flex items-center justify-center opacity-40" id="modal-icon-wrap">
+<span class="material-symbols-outlined text-8xl" id="modal-icon"></span>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute top-3 left-3 bg-primary/20 text-primary border border-primary/40 px-2 py-0.5 rounded text-[10px] font-bold uppercase" id="modal-status"></div>
+</div>
+<div class="p-lg space-y-md">
+<h3 class="font-headline-lg text-headline-lg text-white" id="modal-title"></h3>
+<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed" id="modal-desc"></p>
+<div class="flex flex-wrap gap-xs" id="modal-tags"></div>
+</div>
+</div>
+</div>
+<!-- Contacto Section -->
+<section class="py-xl px-md" id="contacto">
+<div class="max-w-4xl mx-auto glass-card rounded-2xl p-lg border-2 border-primary/20">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-md">
+<h2 class="font-headline-lg text-headline-lg text-white">¿Hablamos de tu próximo proyecto?</h2>
+<p class="text-on-surface-variant font-body-md text-body-md">
+                            Estoy abierto a nuevas oportunidades de colaboración y retos técnicos interesantes en el ecosistema .NET.
+                        </p>
+<div class="space-y-base pt-md">
+<a class="flex items-center gap-base text-on-surface hover:text-primary transition-colors" href="mailto:marcocb1998@gmail.com">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>marcocb1998@gmail.com</span>
+</a>
+<div class="flex items-center gap-base text-on-surface">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>Nezahualcóyotl, Estado de México</span>
+</div>
+<a class="flex items-center gap-base text-on-surface hover:text-primary transition-colors" href="tel:5561533701">
+<span class="material-symbols-outlined text-primary">phone</span>
+<span>55-6153-3701</span>
+</a>
+</div>
+</div>
+<form class="space-y-md">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-white uppercase opacity-70">Nombre</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-md text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Tu nombre" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-white uppercase opacity-70">Email</label>
+<input class="w-full bg-surface border border-outline-variant rounded-lg p-md text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="tu@email.com" type="email"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-white uppercase opacity-70">Mensaje</label>
+<textarea class="w-full bg-surface border border-outline-variant rounded-lg p-md text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="Cuéntame sobre tu proyecto..." rows="4"></textarea>
+</div>
+<button class="w-full bg-primary-container text-white font-bold py-md rounded-lg hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(145,70,255,0.3)]">Enviar Mensaje</button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-lg py-md w-full max-w-container-max mx-auto gap-md">
+<div class="flex items-center gap-sm">
+<span class="font-headline-md text-headline-md text-primary font-bold">NET Dev</span>
+<span class="text-on-surface-variant font-label-md text-label-md">© 2024 Marco Antonio Castañeda Bautista.</span>
+</div>
+<div class="flex gap-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">LinkedIn</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">GitHub</a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple menu toggle logic
+        const menuToggle = document.getElementById('menu-toggle');
+        menuToggle?.addEventListener('click', () => {
+            console.log('Menu toggle clicked');
+        });
+
+        // Dynamic active state for navigation links based on scroll
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= (sectionTop - 120)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+                    link.classList.remove('text-on-surface-variant');
+                } else {
+                    link.classList.add('text-on-surface-variant');
+                }
+            });
+        });
+
+        // Carousel Implementation (native scroll)
+        const track = document.getElementById('carousel-track');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const items = document.querySelectorAll('.carousel-item');
+
+        function scrollByItem(direction) {
+            const itemWidth = items[0].offsetWidth + 24; // width + gap
+            track.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+        }
+
+        nextBtn?.addEventListener('click', () => scrollByItem(1));
+        prevBtn?.addEventListener('click', () => scrollByItem(-1));
+
+        // Auto transition every 8 seconds
+        function autoAdvance() {
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+            if (atEnd) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scrollByItem(1);
+            }
+        }
+
+        let autoPlay = setInterval(autoAdvance, 8000);
+
+        // Pause on hover / touch, resume after interaction
+        track?.addEventListener('mouseenter', () => clearInterval(autoPlay));
+        track?.addEventListener('mouseleave', () => {
+            clearInterval(autoPlay);
+            autoPlay = setInterval(autoAdvance, 8000);
+        });
+        track?.addEventListener('touchstart', () => clearInterval(autoPlay), { passive: true });
+
+        // Project Detail Modal
+        const modal = document.getElementById('project-modal');
+        const modalPanel = document.getElementById('project-modal-panel');
+        const modalClose = document.getElementById('modal-close');
+        const modalImage = document.getElementById('modal-image');
+        const modalIconWrap = document.getElementById('modal-icon-wrap');
+        const modalIcon = document.getElementById('modal-icon');
+        const modalStatus = document.getElementById('modal-status');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDesc = document.getElementById('modal-desc');
+        const modalTags = document.getElementById('modal-tags');
+
+        function openModal(item) {
+            const { title, desc, tags, status, image, icon } = item.dataset;
+
+            modalTitle.textContent = title || '';
+            modalDesc.textContent = desc || '';
+            modalStatus.textContent = status || '';
+            modalStatus.classList.toggle('hidden', !status);
+
+            if (image) {
+                modalImage.src = image;
+                modalImage.alt = title || '';
+                modalImage.classList.remove('hidden');
+                modalIconWrap.classList.add('hidden');
+            } else {
+                modalImage.classList.add('hidden');
+                modalIconWrap.classList.remove('hidden');
+                modalIcon.textContent = icon || 'work';
+            }
+
+            modalTags.innerHTML = '';
+            (tags || '').split(',').filter(Boolean).forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'bg-primary/10 text-primary px-2 py-1 rounded text-xs';
+                span.textContent = tag.trim();
+                modalTags.appendChild(span);
+            });
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+
+            // Force reflow so the transition runs from the initial (hidden) state
+            void modal.offsetWidth;
+
+            modal.classList.remove('opacity-0');
+            modalPanel.classList.remove('opacity-0', 'scale-95', 'translate-y-4');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalPanel.classList.add('opacity-0', 'scale-95', 'translate-y-4');
+            document.body.classList.remove('overflow-hidden');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        items.forEach(item => {
+            item.addEventListener('click', () => openModal(item));
+        });
+
+        modalClose?.addEventListener('click', closeModal);
+        modal?.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+        });
+    </script>
+</body></html>

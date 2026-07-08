@@ -670,6 +670,18 @@
         const items = document.querySelectorAll('.carousel-item');
 
         function scrollByItem(direction) {
+            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+            const atStart = track.scrollLeft <= 1;
+
+            if (direction > 0 && atEnd) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+                return;
+            }
+            if (direction < 0 && atStart) {
+                track.scrollTo({ left: track.scrollWidth, behavior: 'smooth' });
+                return;
+            }
+
             const itemWidth = items[0].offsetWidth + 24; // width + gap
             track.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
         }
@@ -679,12 +691,7 @@
 
         // Auto transition every 8 seconds
         function autoAdvance() {
-            const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
-            if (atEnd) {
-                track.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                scrollByItem(1);
-            }
+            scrollByItem(1);
         }
 
         let autoPlay = setInterval(autoAdvance, 8000);
